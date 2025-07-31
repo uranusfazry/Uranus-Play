@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uranus Play - Platform Gaming Profesional</title>
+    <meta name="description" content="Rasakan gaming generasi berikutnya dengan Uranus Play - tujuan gaming utama Anda">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* [--- CSS HALAMAN UTAMA ---] */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.2'/%3E%3C/svg%3E");
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #6b46c1, #3b82f6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .game-card {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(91, 33, 182, 0.5);
+        }
+        .game-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.8));
+            z-index: 1;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        /* [--- CSS ANIMASI BARU ---] */
+        @keyframes button-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(99, 102, 241, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+        }
+        .animate-pulse-click {
+            animation: button-pulse 0.7s ease-out;
+        }
+
+        /* Animasi saat scroll */
+        .animate-on-scroll {
+            opacity: 0;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.fade-in-up {
+             transform: translateY(30px);
+        }
+        .animate-on-scroll.fade-in-left {
+             transform: translateX(-30px);
+        }
+         .animate-on-scroll.fade-in-right {
+             transform: translateX(30px);
+        }
+        .animate-on-scroll.zoom-in {
+            transform: scale(0.95);
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        /* [--- CSS WATERMARK ---] */
+        :root {
+            --glow-color: hsl(186, 100%, 50%);
+            --background-color: rgba(10, 25, 40, 0.85);
+            --border-color: rgba(127, 255, 212, 0.3);
+            --text-color: rgba(230, 255, 255, 0.95);
+            --particle-base-hue: 186;
+            --particle-base-lightness: 60;
+        }
+        @keyframes slideUpFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes logo3DFlip {
+            0% { transform: rotateY(0deg); filter: brightness(1); }
+            50% { transform: rotateY(180deg); filter: brightness(2) drop-shadow(0 0 8px var(--glow-color)); }
+            100% { transform: rotateY(360deg); filter: brightness(1); }
+        }
+        #futuristic-watermark {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            padding: 8px 15px;
+            min-width: 212px;
+            background: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(var(--glow-color), 0.15), 0 0 30px rgba(var(--glow-color), 0.1), inset 0 0 10px rgba(var(--glow-color), 0.1);
+            z-index: 9999;
+            cursor: pointer;
+            user-select: none;
+            overflow: hidden;
+            opacity: 0;
+            animation: slideUpFadeIn 1s ease-out 0.5s forwards;
+            transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        #futuristic-watermark:hover {
+            transform: translateY(-5px) scale(1.03);
+            border-color: rgba(127, 255, 212, 0.8);
+            box-shadow: 0 0 25px rgba(var(--glow-color), 0.4), 0 0 50px rgba(var(--glow-color), 0.25), inset 0 0 12px rgba(var(--glow-color), 0.2);
+        }
+        #futuristic-watermark.light-mode {
+            --glow-color: hsl(220, 90%, 60%);
+            --background-color: rgba(245, 248, 252, 0.85);
+            --border-color: rgba(60, 100, 150, 0.3);
+            --text-color: rgba(10, 25, 40, 0.95);
+            --particle-base-hue: 220;
+            --particle-base-lightness: 40;
+        }
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .f-content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 18px;
+        }
+        .f-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .f-content.hidden {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            transform: scale(0.9);
+        }
+        .f-logo-container {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.4s ease;
+            flex-shrink: 0;
+        }
+        .f-logo-container.reacting {
+            animation: logo3DFlip 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .f-logo-container svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--glow-color);
+            stroke-width: 8;
+            transition: stroke 0.5s ease;
+        }
+        #f-watermark-text, #f-follow-message {
+            transition: color 0.5s ease;
+        }
+        #f-watermark-text {
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        #f-follow-message {
+            font-size: 11px;
+            letter-spacing: 0.2px;
+            font-weight: 700;
+            text-align: center;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans">
+    <nav class="bg-gray-800/80 backdrop-blur-md border-b border-gray-700/50 py-4 sticky top-0 z-50 animate-on-scroll fade-in-up">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://i.imghippo.com/files/fyY2777MoM.png" alt="Logo Uranus Play - planet ungu dan biru dengan ikon kontroler" class="h-10 rounded-full">
+                <span class="text-2xl font-bold gradient-text">Uranus Play</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#games" class="hover:text-purple-400 transition">Game</a>
+                <a href="#features" class="hover:text-blue-400 transition">Fitur</a>
+                <a href="#community" class="hover:text-purple-400 transition">Komunitas</a>
+                <a href="https://support.uranusplay.com" target="_blank" class="hover:text-blue-400 transition">Dukungan</a>
+            </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative overflow-hidden py-32 bg-cover bg-center">
+        <div id="particles-js"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-blue-900/80 z-0"></div>
+        <div class="absolute inset-0 bg-noise opacity-10 z-0"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-on-scroll fade-in-up" style="transition-delay: 100ms;">
+                        Revolusi Baru <span class="gradient-text">Uranus Play</span> dalam Dunia Gaming
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 max-w-lg animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                        Uranus Play adalah platform gaming modern yang menghadirkan teknologi inovatif, performa maksimal, dan koleksi game eksklusif untuk pengalaman bermain tanpa batas.
+                    </p>
+                    <div class="mt-12 flex items-center gap-8 mb-8 animate-on-scroll fade-in-up" style="transition-delay: 300ms;">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-white"><span class="counter" data-target="2500000">0</span>+</div>
+                            <div class="text-gray-300">Pemain Aktif</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-white"><span class="counter" data-target="2200">0</span>+</div>
+                            <div class="text-gray-300">Game Eksklusif</div>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4 animate-on-scroll fade-in-up" style="transition-delay: 400ms;">
+                        <a href="#games" id="explore-button" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:opacity-90 transition">Jelajahi Game</a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center animate-on-scroll zoom-in" style="transition-delay: 500ms;">
+                    <img src="https://i.imghippo.com/files/Wrz1577wGE.png" alt="Gamer bermain di setup gaming canggih dengan lampu RGB di ruangan gelap" class="rounded-xl floating max-w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="games" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Game Unggulan</span> Kami</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">Temukan game peringkat teratas kami yang disukai oleh jutaan pemain di seluruh dunia</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="game-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 animate-on-scroll zoom-in" style="transition-delay: 100ms;">
+                    <div class="h-48 overflow-hidden"><img src="https://i.imghippo.com/files/OLD7050cbk.png" alt="Game Poki Multiplayer Seru" class="w-full h-full object-cover"></div>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold">Game Multiplayer Seru</h3>
+                        <p class="text-gray-300 my-2 text-sm">Menyediakan lebih dari 1.000 game seru yang bisa langsung dimainkan di browser tanpa perlu download, login, atau install! Semua game di daftar ini gratis, ringan dimainkan di HP atau laptop, dan dijamin anti bosan!</p>
+                        <a href="https://poki.com/id/platform?campaign=21854231004&adgroup=164874311970&extensionid=&targetid=kwd-20170646&location=9056664&matchtype=b&network=g&device=m&devicemodel=&creative=719330220661&keyword=game%20platform&placement=&target=&gad_source=1&gad_campaignid=21854231004&gbraid=0AAAAADlg9ZGs2dgXjW8akb_umd2L8eAVL&gclid=Cj0KCQjwhafEBhCcARIsAEGZEKIub_wgDHeLY1zTU-0i2JseLTSVVtV0l61t6sZie--V99M3AfZ1OEwaAkX-EALw_wcB" target="_blank" class="text-sm bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Mainkan Sekarang</a>
+                    </div>
+                </div>
+
+                <div class="game-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 animate-on-scroll zoom-in" style="transition-delay: 200ms;">
+                    <div class="h-48 overflow-hidden"><img src="https://i.imghippo.com/files/lTDq7596IQE.png" alt="Game Multiplayer PlayStation" class="w-full h-full object-cover"></div>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold">Game Multiplayer PlayStation</h3>
+                        <p class="text-gray-300 my-2 text-sm">Menghadirkan lebih dari 14.000 game dari berbagai konsol legendaris seperti NES, SNES, Sega, Game Boy, N64, PlayStation 1, hingga Arcade klasik. Semua game bisa dimainkan langsung melalui browser tanpa perlu instalasi, lengkap dengan koleksi yang mencakup game fighting, balapan, petualangan, hingga RPG legendaris</p>
+                         <a href="https://www.retrogames.cc/arcade-games/marvel-vs-capcom-clash-of-super-heroes-980112-euro.html" target="_blank" class="text-sm bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Mainkan Sekarang</a>
+                    </div>
+                </div>
+
+                <div class="game-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 animate-on-scroll zoom-in" style="transition-delay: 300ms;">
+                    <div class="h-48 overflow-hidden"><img src="https://i.imghippo.com/files/J4346lqw.png" alt="Mainkan Game Multiplayer Seru di CrazyGames" class="w-full h-full object-cover"></div>
+                    <div class="p-6 relative z-10">
+                        <h3 class="text-xl font-bold">Game Multiplayer Menantang</h3>
+                        <p class="text-gray-300 my-2 text-sm">Game online gratis yang menghadirkan lebih dari 7.000 game dari berbagai kategori. Mulai dari game aksi yang menegangkan, game balap memacu adrenalin, game multiplayer seru untuk mabar bersama teman, hingga game puzzle yang mengasah otak, semua bisa dimainkan langsung di browser tanpa perlu download</p>
+                        <a href="https://www.crazygames.co.id/" target="_blank" class="text-sm bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Mainkan Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 animate-on-scroll fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mengapa Memilih <span class="gradient-text">Uranus Play</span></h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">Fitur premium yang dirancang untuk gamer serius</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 animate-on-scroll fade-in-up" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-6 text-2xl"><i class="fas fa-trophy"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Papan Peringkat Pro</h3>
+                    <p class="text-gray-300">Bersaing dengan yang terbaik dan lacak kemajuan Anda dengan sistem peringkat canggih kami.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-6 text-2xl"><i class="fas fa-cloud"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Simpanan Awan</h3>
+                    <p class="text-gray-300">Kemajuan Anda disimpan secara otomatis dan dapat diakses dari perangkat apa pun.</p>
+                </div>
+                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 animate-on-scroll fade-in-up" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-6 text-2xl"><i class="fas fa-users"></i></div>
+                    <h3 class="text-xl font-bold mb-3">Fitur Sosial</h3>
+                    <p class="text-gray-300">Terhubung dengan teman, bergabung dengan klan, dan berpartisipasi dalam acara global.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="community" class="bg-gray-900 border-t border-gray-800 pt-12 pb-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between animate-on-scroll fade-in-up">
+                <div class="mb-8 md:mb-0">
+                     <div class="flex items-center space-x-2 mb-4">
+                        <img src="https://i.imghippo.com/files/fyY2777MoM.png" alt="Logo Uranus Play" class="h-10 rounded-full">
+                        <span class="text-xl font-bold gradient-text">Uranus Play</span>
+                    </div>
+                    <p class="text-gray-400 max-w-xs">Platform gaming terbaik untuk gamer profesional.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                     </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
+                <p class="text-gray-500 mb-4 md:mb-0">© 2025 Uranus Play. Hak cipta dilindungi undang-undang.</p>
+                <div class="flex space-x-6">
+                    <a href="https://www.facebook.com/share/1AfJHVfSY6/" target="_blank" class="text-gray-400 hover:text-blue-400 transition text-xl"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@uranusfazry?_t=ZS-8y1ncR7XOi1&_r=1" target="_blank" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/kingbewan?igsh=NHlyNnRzZ21wZjBi" target="_blank" class="text-gray-400 hover:text-purple-400 transition text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@uranusfazry?si=pbliTKOKTkiCcxvu" target="_blank" class="text-gray-400 hover:text-red-400 transition text-xl"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fungsionalitas toggle menu seluler
+            const mobileMenuButton = document.querySelector('.md\\:hidden');
+            mobileMenuButton.addEventListener('click', () => console.log('Tombol menu seluler diklik'));
+
+            // Gulir halus untuk semua tautan jangkar
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.hash);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Animasi klik tombol "Jelajahi Game"
+            const exploreButton = document.getElementById('explore-button');
+            if (exploreButton) {
+                exploreButton.addEventListener('click', function() {
+                    this.classList.add('animate-pulse-click');
+                    this.addEventListener('animationend', () => {
+                        this.classList.remove('animate-pulse-click');
+                    }, { once: true });
+                });
+            }
+
+            // Inisialisasi particles.js
+            particlesJS('particles-js', {"particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true,"anim":{"enable":true,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":2,"direction":"none","out_mode":"out"}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"repulse":{"distance":100,"duration":0.4},"push":{"particles_nb":4}}},"retina_detect":true});
+
+            // Animasi penghitung
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText.replace(/\./g, '');
+                    const increment = target / 200; // speed
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = new Intl.NumberFormat('id-ID').format(target);
+                    }
+                }
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateCount();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            });
+
+            // Animasi saat scroll untuk elemen lain
+            const scrollElements = document.querySelectorAll('.animate-on-scroll');
+            const scrollObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            scrollElements.forEach(el => scrollObserver.observe(el));
+        });
+    </script>
+    
+    <script>
+      (function() {
+        function initializeWatermark() {
+            const watermarkHTML = `
+              <div id="futuristic-watermark" title="Design by ©URANUSFAZRY">
+                <canvas id="particle-canvas"></canvas>
+                <div class="f-content-wrapper">
+                  <div id="f-main-content" class="f-content">
+                    <div class="f-logo-container">
+                      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20 20 L80 20 L80 80 L20 80 Z" stroke-opacity="0.5"/>
+                          <path d="M50 5 L95 50 L50 95 L5 50 Z"/>
+                      </svg>
+                    </div>
+                    <span id="f-watermark-text">©URANUSFAZRY</span>
+                  </div>
+                  <div id="f-follow-content" class="f-content hidden">
+                      <span id="f-follow-message"></span>
+                  </div>
+                </div>
+              </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', watermarkHTML);
+    
+            const watermarkEl = document.getElementById('futuristic-watermark');
+            const textEl = document.getElementById('f-watermark-text');
+            const logoEl = watermarkEl.querySelector('.f-logo-container');
+            const mainContentEl = document.getElementById('f-main-content');
+            const followContentEl = document.getElementById('f-follow-content');
+            const followMessageEl = document.getElementById('f-follow-message');
+            
+            let isAnimating = false;
+            let autoPlayInterval = null;
+            let currentSequence = 0;
+            const sequenceActions = ['scramble', 'logo', 'youtube', 'tiktok', 'reset'];
+    
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            const resizeCanvas = () => { if (watermarkEl) { canvas.width = watermarkEl.offsetWidth; canvas.height = watermarkEl.offsetHeight; } };
+            class Particle {
+                constructor() { this.reset(); this.baseSpeedX = (Math.random() - 0.5) * 0.5; this.baseSpeedY = (Math.random() - 0.5) * 0.5; this.speedX = this.baseSpeedX; this.speedY = this.baseSpeedY; }
+                update() {
+                    this.x += this.speedX; this.y += this.speedY; this.opacity -= this.fadeSpeed;
+                    if (this.opacity <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) { this.reset(); }
+                }
+                draw() {
+                    const style = getComputedStyle(watermarkEl);
+                    const hue = style.getPropertyValue('--particle-base-hue').trim();
+                    const lightness = parseFloat(style.getPropertyValue('--particle-base-lightness').trim());
+                    ctx.globalAlpha = this.opacity;
+                    ctx.fillStyle = `hsl(${hue}, 100%, ${lightness + this.opacity * 40}%)`;
+                    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                }
+                reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.opacity = Math.random() * 0.5 + 0.2; this.size = Math.random() * 1.5 + 0.5; this.fadeSpeed = Math.random() * 0.015 + 0.005; }
+            }
+            const animateParticles = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); ctx.globalAlpha = 1.0; requestAnimationFrame(animateParticles); };
+            
+            const textScramble = (el) => {
+                const originalText = "©URANUSFAZRY";
+                const chars = '!<>*#{}[]'; let frame = 0; isAnimating = true;
+                const interval = setInterval(() => {
+                    el.innerText = originalText.split('').map((char, i) => { const p = (frame - i * 2) / 15; if (p < 0) return ' '; if (p > 1) return char; return chars[Math.floor(Math.random() * chars.length)]; }).join('');
+                    if (frame >= originalText.length * 2 + 15) { clearInterval(interval); el.innerText = originalText; isAnimating = false; } frame++;
+                }, 30);
+            };
+    
+            const typewriter = (el, text) => {
+                let i = 0; el.innerHTML = ""; isAnimating = true;
+                const interval = setInterval(() => {
+                    if (i < text.length) { el.innerHTML += text.charAt(i); i++; } 
+                    else { clearInterval(interval); isAnimating = false; }
+                }, 50);
+            };
+    
+            const runAutoSequence = () => {
+                if (isAnimating) return;
+                const action = sequenceActions[currentSequence];
+                switch (action) {
+                    case 'scramble': textScramble(textEl); break;
+                    case 'logo':
+                        isAnimating = true;
+                        logoEl.classList.add('reacting');
+                        logoEl.addEventListener('animationend', () => { logoEl.classList.remove('reacting'); isAnimating = false; }, { once: true });
+                        break;
+                    case 'youtube':
+                        isAnimating = true;
+                        mainContentEl.classList.add('hidden');
+                        setTimeout(() => {
+                            followContentEl.classList.remove('hidden');
+                            typewriter(followMessageEl, "Follow uranusfazry YouTube");
+                        }, 400);
+                        break;
+                    case 'tiktok': 
+                        typewriter(followMessageEl, "Follow uranusfazry TikTok"); 
+                        break;
+                    case 'reset':
+                        isAnimating = true;
+                        followContentEl.classList.add('hidden');
+                        setTimeout(() => {
+                            mainContentEl.classList.remove('hidden');
+                            isAnimating = false;
+                        }, 400);
+                        break;
+                }
+                currentSequence = (currentSequence + 1) % sequenceActions.length;
+            };
+    
+            const startAutoPlay = () => {
+                if (autoPlayInterval) clearInterval(autoPlayInterval);
+                runAutoSequence();
+                autoPlayInterval = setInterval(runAutoSequence, 3500);
+            };
+    
+            watermarkEl.addEventListener('click', () => { watermarkEl.classList.toggle('light-mode'); });
+            
+            const init = () => {
+                resizeCanvas();
+                for (let i = 0; i < 40; i++) particles.push(new Particle());
+                animateParticles();
+                window.addEventListener('resize', resizeCanvas);
+                startAutoPlay();
+            };
+            init();
+        }
+    
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeWatermark);
+        } else {
+            initializeWatermark();
+        }
+      })();
+    </script>
+</body>
+</html>
