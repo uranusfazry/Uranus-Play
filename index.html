@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uranus Play - Platform Gaming Profesional</title>
     <meta name="description" content="Rasakan gaming generasi berikutnya dengan Uranus Play - tujuan gaming utama Anda">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680333985825250"
+     crossorigin="anonymous"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -211,14 +215,31 @@
             <div class="hidden md:flex space-x-8">
                 <a href="#games" class="hover:text-purple-400 transition">Game</a>
                 <a href="#features" class="hover:text-blue-400 transition">Fitur</a>
-                <a href="#community" class="hover:text-purple-400 transition">Komunitas</a>
                 <a href="https://trakteer.id/uranusfazry" target="_blank" class="hover:text-blue-400 transition">Dukungan</a>
             </div>
-            <button class="md:hidden text-xl">
+            <button id="hamburger-button" class="md:hidden text-xl z-50">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900/95 backdrop-blur-sm z-40 flex-col items-center justify-center space-y-8 transition-opacity duration-300">
+        <a href="#games" class="text-3xl hover:text-purple-400 transition mobile-menu-link">Game</a>
+        <a href="#features" class="text-3xl hover:text-blue-400 transition mobile-menu-link">Fitur</a>
+        <a href="https://trakteer.id/uranusfazry" target="_blank" class="text-3xl hover:text-blue-400 transition mobile-menu-link">Dukungan</a>
+    </div>
+
+    <div class="container mx-auto px-4 my-8 text-center">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5680333985825250"
+             data-ad-slot="1111111111"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <section class="relative overflow-hidden py-32 bg-cover bg-center">
         <div id="particles-js"></div>
@@ -293,6 +314,18 @@
         </div>
     </section>
 
+    <div class="container mx-auto px-4 my-8 text-center">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5680333985825250"
+             data-ad-slot="2222222222"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
     <section id="features" class="py-20 bg-gray-900">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 animate-on-scroll fade-in-up">
@@ -333,6 +366,19 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
                      </div>
             </div>
+            
+            <div class="container mx-auto px-4 my-8 text-center">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5680333985825250"
+                     data-ad-slot="3333333333"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            
             <div class="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
                 <p class="text-gray-500 mb-4 md:mb-0">© 2025 Uranus Play. Hak cipta dilindungi undang-undang.</p>
                 <div class="flex space-x-6">
@@ -348,15 +394,40 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Fungsionalitas toggle menu seluler
-            const mobileMenuButton = document.querySelector('.md\\:hidden');
-            mobileMenuButton.addEventListener('click', () => console.log('Tombol menu seluler diklik'));
+            // [--- FUNGSI HAMBURGER MENU BARU ---]
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            const hamburgerIcon = hamburgerButton.querySelector('i');
+
+            const toggleMenu = () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('flex'); 
+                // Mengubah ikon
+                if (mobileMenu.classList.contains('hidden')) {
+                    hamburgerIcon.classList.remove('fa-times');
+                    hamburgerIcon.classList.add('fa-bars');
+                } else {
+                    hamburgerIcon.classList.remove('fa-bars');
+                    hamburgerIcon.classList.add('fa-times');
+                }
+            };
+
+            hamburgerButton.addEventListener('click', toggleMenu);
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+            // [--- AKHIR FUNGSI HAMBURGER MENU ---]
+
 
             // Gulir halus untuk semua tautan jangkar
             const anchorLinks = document.querySelectorAll('a[href^="#"]');
             anchorLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
+                    // Cek jika link bukan bagian dari menu seluler untuk mencegah penutupan ganda
+                    if (!this.classList.contains('mobile-menu-link')) {
+                        e.preventDefault();
+                    }
                     const targetElement = document.querySelector(this.hash);
                     if (targetElement) {
                         targetElement.scrollIntoView({ behavior: 'smooth' });
