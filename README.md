@@ -1,56 +1,78 @@
-# Uranusfazry Uranus Play – Platform Gaming Profesional
+# 🎮 Uranusfazry Uranus Play – Platform Gaming Profesional
 
-**Uranus Play** adalah platform gaming modern yang menyajikan pengalaman bermain penuh inovasi, performa unggul, dan akses instan ke berbagai game eksklusif—tanpa instalasi apapun.0
-
----
-
-##  Fitur Utama
-
-- **Game Multiplayer Seru**  
-  Akses lebih dari 1.000 game yang bisa langsung dimainkan melalui browser—gratis, ringan, dan tanpa perlu download atau login.1
-
-- **Game Multiplayer dari Konsol Legendaris**  
-  Nikmati lebih dari 14.000 judul retro dari era NES, SNES, Sega, Game Boy, N64, PlayStation 1, hingga game arcade klasik. Semua bisa dimainkan langsung di browser.2
-
-- **Game Multiplayer Menantang**  
-  Platform menyediakan lebih dari 7.000 game online dengan berbagai genre—aksi, balap, mamp, puzzle—semuanya anti bosan dan dapat dimainkan langsung.3
+**Uranus Play** adalah platform gaming modern yang menghadirkan pengalaman bermain inovatif, performa tinggi, dan akses instan ke ribuan game eksklusif — tanpa instalasi atau konfigurasi rumit.
 
 ---
 
-##  Alasan Memilih Uranus Play
+## ✨ Fitur Utama
 
-- **Papan Peringkat Pro**  
-  Tantang diri Anda dan bandingkan kemajuan dengan kompetitor lewat sistem ranking yang canggih.4
+- **🎯 Game Multiplayer Seru**  
+  Akses lebih dari **1.000+ game** langsung dari browser — gratis, ringan, dan tanpa perlu download atau login.
 
-- **Simpanan Awan**  
-  Progress permainan Anda disimpan otomatis dan dapat diakses kapan saja dari perangkat manapun.5
+- **🕹 Game Retro Konsol Legendaris**  
+  Mainkan lebih dari **14.000 judul retro** dari era NES, SNES, Sega, Game Boy, N64, PlayStation 1, hingga game arcade klasik. Semua dapat dimainkan langsung di browser.
 
-- **Fitur Sosial**  
-  Ayo bergabung dengan teman, gabung ke klan, dan ikuti event-event global dalam komunitas gaming.6
-
----
-
-##  Cara Menggunakan
-
-1. Kunjungi situs `https://uranus-play.vercel.app/`.  
-2. Pilih kategori game yang ingin dimainkan: game multiplayer seru, game retro konsol, atau game online menantang.  
-3. Klik “Mainkan Sekarang” untuk langsung mulai bermain—tanpa perlu mengunduh atau login.7  
-4. Nikmati bermain sambil bersaing lewat papan peringkat, atau simpan progress Anda untuk dilanjutkan nanti.
+- **🔥 Game Online Menantang**  
+  Nikmati lebih dari **7.000 game online** dengan genre beragam: aksi, balap, tembak-tembakan, puzzle, dan banyak lagi — anti bosan, tanpa batas.
 
 ---
 
-##  Keunggulan
+## 💡 Alasan Memilih Uranus Play
 
-- **Instan & Praktis**: Tanpa instalasi, langsung main di browser—cocok untuk pengguna cepat dan efisien.  
-- **Koleksi Game Luas**: Ribuan game dengan genre beragam, dari klasik hingga modern—selalu ada yang seru!  
-- **Fitur Profesional**: Papan peringkat, penyimpanan cloud, dan dukungan sosial—semua untuk pengalaman gaming yang kelas atas.
+- **🏆 Papan Peringkat Profesional**  
+  Bersaing dengan pemain lain lewat sistem ranking canggih yang memperlihatkan kemajuan Anda secara real-time.
+
+- **☁ Penyimpanan Cloud**  
+  Simpan progres permainan secara otomatis dan akses dari perangkat mana pun.
+
+- **🤝 Fitur Sosial**  
+  Bergabunglah dengan teman, bentuk tim atau klan, dan ikuti event global dalam komunitas gaming.
 
 ---
 
-##  Pengembangan Lebih Lanjut (Opsional)
+## 🚀 Cara Menggunakan
 
-Untuk memperkaya README ini, Anda bisa menambahkan:
+1. Kunjungi **[Uranus Play](https://uranus-play.vercel.app/)**  
+2. Pilih kategori game:  
+   - Multiplayer Seru  
+   - Retro Konsol Legendaris  
+   - Game Online Menantang  
+3. Klik **Mainkan Sekarang** — langsung bermain tanpa unduh atau login.  
+4. Gunakan papan peringkat & cloud untuk pengalaman terbaik.
 
-- Tautan ke repositori GitHub (jika proyek ini open-source).  
-- Teknologi yang digunakan (seperti framework front-end, engine game, atau platform penyimpanan cloud).  
-- Panduan setup lokal atau deployment bagi pengembang/pihak ketiga yang ingin berkontribusi.
+---
+
+## 🏅 Keunggulan
+
+- **Instan & Praktis** – Main langsung di browser, tanpa instalasi.  
+- **Koleksi Luas** – Ribuan game dari klasik hingga modern.  
+- **Fitur Pro** – Leaderboard, cloud save, komunitas aktif.
+
+---
+
+## 🛠 Teknologi yang Digunakan
+
+- **Frontend:** Next.js, React.js  
+- **Backend:** Node.js  
+- **Database & Cloud:** Firebase / Supabase  
+- **Game Engine:** HTML5, WebAssembly, RetroArch Core  
+- **Deployment:** Vercel  
+
+---
+
+## 📦 Instalasi Lokal (Opsional)
+
+> Bagian ini untuk developer yang ingin menjalankan proyek secara lokal.
+
+```bash
+# 1. Clone repositori
+git clone https://github.com/username/uranus-play.git
+
+# 2. Masuk ke folder proyek
+cd uranus-play
+
+# 3. Install dependencies
+npm install
+
+# 4. Jalankan di mode pengembangan
+npm run dev
