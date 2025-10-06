@@ -3,235 +3,787 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uranusfazry Meluncurkan Aplikasi Uranus Play - Platform Gaming Profesional</title>
-    <meta name="description" content="Rasakan gaming generasi berikutnya dengan Uranus Play - tujuan gaming utama Anda">
+    <title>Uranus Play - Platform Gaming Gen Z</title>
+    <meta name="description" content="Platform gaming modern dengan koleksi game terlengkap">
     
-    <!-- This is a Google AdSense script, which was in the original file. -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680333985825250"
-     crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5680333985825250" crossorigin="anonymous"></script>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-        /* [--- CSS HALAMAN UTAMA ---] */
-        .bg-noise {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.2'/%3E%3C/svg%3E");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+
+        :root {
+            --primary-dark: #0a0e1a;
+            --secondary-dark: #151923;
+            --accent-purple: #a855f7;
+            --accent-blue: #3b82f6;
+            --accent-pink: #ec4899;
+            --neon-glow: rgba(168, 85, 247, 0.5);
+            --text-primary: #ffffff;
+            --text-secondary: #9ca3af;
         }
-        .floating {
-            animation: float 3s ease-in-out infinite;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        .gradient-text {
-            background: linear-gradient(90deg, #6b46c1, #3b82f6);
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-50px, -50px); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(168, 85, 247, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(168, 85, 247, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 14, 26, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-wrapper:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-purple);
+            box-shadow: 0 0 20px var(--neon-glow);
+            transition: all 0.3s ease;
+        }
+
+        .logo-wrapper:hover .logo-img {
+            box-shadow: 0 0 30px var(--neon-glow);
+            transform: rotate(360deg);
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent;
         }
-        .game-card {
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--accent-purple);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            z-index: 1;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px var(--neon-glow);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
         }
-        .game-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px -12px rgba(91, 33, 182, 0.5);
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
         }
+
+        .cta-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.5);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .floating-element {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Games Section */
+        .games-section {
+            position: relative;
+            padding: 6rem 2rem;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .games-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background: var(--secondary-dark);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
         .game-card::before {
             content: '';
             position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.8));
-            z-index: 1;
-        }
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
-            z-index: 1;
-        }
-
-        /* [--- CSS ANIMASI BARU ---] */
-        @keyframes button-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(99, 102, 241, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
-        }
-        .animate-pulse-click {
-            animation: button-pulse 0.7s ease-out;
-        }
-
-        /* Animasi saat scroll */
-        .animate-on-scroll {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
             opacity: 0;
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition: opacity 0.4s ease;
         }
-        .animate-on-scroll.fade-in-up {
-             transform: translateY(30px);
-        }
-        .animate-on-scroll.fade-in-left {
-             transform: translateX(-30px);
-        }
-         .animate-on-scroll.fade-in-right {
-             transform: translateX(30px);
-        }
-        .animate-on-scroll.zoom-in {
-            transform: scale(0.95);
-        }
-        .animate-on-scroll.is-visible {
+
+        .game-card:hover::before {
             opacity: 1;
-            transform: none;
         }
-        
-        /* [--- CSS WATERMARK ---] */
-        :root {
-            --glow-color: hsl(186, 100%, 50%);
-            --background-color: rgba(10, 25, 40, 0.85);
-            --border-color: rgba(127, 255, 212, 0.3);
-            --text-color: rgba(230, 255, 255, 0.95);
-            --particle-base-hue: 186;
-            --particle-base-lightness: 60;
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.4);
         }
-        @keyframes slideUpFadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .game-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
         }
-        @keyframes logo3DFlip {
-            0% { transform: rotateY(0deg); filter: brightness(1); }
-            50% { transform: rotateY(180deg); filter: brightness(2) drop-shadow(0 0 8px var(--glow-color)); }
-            100% { transform: rotateY(360deg); filter: brightness(1); }
+
+        .game-card:hover .game-image {
+            transform: scale(1.1);
         }
-        #futuristic-watermark {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
-            padding: 8px 15px;
-            min-width: 212px;
-            background: var(--background-color);
-            color: var(--text-color);
-            font-family: 'Roboto Mono', monospace;
-            font-weight: 500;
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(var(--glow-color), 0.15), 0 0 30px rgba(var(--glow-color), 0.1), inset 0 0 10px rgba(var(--glow-color), 0.1);
-            z-index: 9999;
-            cursor: pointer;
-            user-select: none;
+
+        .game-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .game-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .play-button {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
-            opacity: 0;
-            animation: slideUpFadeIn 1s ease-out 0.5s forwards;
-            transition: background-color 0.5s ease, color 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        #futuristic-watermark:hover {
-            transform: translateY(-5px) scale(1.03);
-            border-color: rgba(127, 255, 212, 0.8);
-            box-shadow: 0 0 25px rgba(var(--glow-color), 0.4), 0 0 50px rgba(var(--glow-color), 0.25), inset 0 0 12px rgba(var(--glow-color), 0.2);
+
+        .play-button::after {
+            content: '→';
+            position: absolute;
+            right: 1rem;
+            transition: transform 0.3s ease;
         }
-        #futuristic-watermark.light-mode {
-            --glow-color: hsl(220, 90%, 60%);
-            --background-color: rgba(245, 248, 252, 0.85);
-            --border-color: rgba(60, 100, 150, 0.3);
-            --text-color: rgba(10, 25, 40, 0.95);
-            --particle-base-hue: 220;
-            --particle-base-lightness: 40;
+
+        .play-button:hover::after {
+            transform: translateX(5px);
         }
-        #particle-canvas {
+
+        .play-button:hover {
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Features Section */
+        .features-section {
+            position: relative;
+            padding: 6rem 2rem;
+            background: var(--secondary-dark);
+            z-index: 1;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--primary-dark);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
-            pointer-events: none;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.05), rgba(59, 130, 246, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
-        .f-content-wrapper {
-            position: relative;
-            z-index: 2;
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-purple);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.3);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 18px;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
         }
-        .f-content {
+
+        .feature-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            padding: 4rem 2rem 2rem;
+            background: var(--primary-dark);
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            z-index: 1;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            gap: 1rem;
         }
-        .f-content.hidden {
-            opacity: 0;
-            pointer-events: none;
-            position: absolute;
-            transform: scale(0.9);
+
+        .footer-logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
         }
-        .f-logo-container {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.4s ease;
-            flex-shrink: 0;
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
         }
-        .f-logo-container.reacting {
-            animation: logo3DFlip 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary-dark);
+            border-radius: 50%;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(168, 85, 247, 0.2);
         }
-        .f-logo-container svg {
-            width: 100%;
-            height: 100%;
-            stroke: var(--glow-color);
-            stroke-width: 8;
-            transition: stroke 0.5s ease;
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
         }
-        #f-watermark-text, #f-follow-message {
-            transition: color 0.5s ease;
-        }
-        #f-watermark-text {
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        #f-follow-message {
-            font-size: 11px;
-            letter-spacing: 0.2px;
-            font-weight: 700;
+
+        .footer-bottom {
             text-align: center;
-            white-space: nowrap;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(168, 85, 247, 0.1);
+            color: var(--text-secondary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: rgba(10, 14, 26, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 6rem 2rem;
+            transition: right 0.3s ease;
+            z-index: 999;
+            border-left: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(168, 85, 247, 0.1);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--accent-purple);
+            padding-left: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Ad Container Styling */
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            padding: 1rem;
         }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans">
-    <nav class="bg-gray-800/80 backdrop-blur-md border-b border-gray-700/50 py-4 sticky top-0 z-50 animate-on-scroll fade-in-up">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <img src="https://i.imghippo.com/files/fyY2777MoM.png" alt="Logo Uranus Play - planet ungu dan biru dengan ikon kontroler" class="h-10 rounded-full">
-                <span class="text-2xl font-bold gradient-text">Uranus Play</span>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="grid-overlay"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo-wrapper">
+                <img src="https://i.imghippo.com/files/fyY2777MoM.png" alt="Uranus Play Logo" class="logo-img">
+                <span class="logo-text">URANUS PLAY</span>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#games" class="hover:text-purple-400 transition">Game</a>
-                <a href="#features" class="hover:text-blue-400 transition">Fitur</a>
-                <a href="https://trakteer.id/uranusfazry" target="_blank" class="hover:text-blue-400 transition">Dukungan</a>
+            <ul class="nav-links">
+                <li><a href="#games">Game</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="https://trakteer.id/uranusfazry" target="_blank">Dukungan</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
-            <button id="hamburger-button" class="md:hidden text-xl z-50">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
 
-    <div id="mobile-menu" class="hidden fixed inset-0 bg-gray-900/95 backdrop-blur-sm z-40 flex-col items-center justify-center space-y-8 transition-opacity duration-300">
-        <a href="#games" class="text-3xl hover:text-purple-400 transition mobile-menu-link">Game</a>
-        <a href="#features" class="text-3xl hover:text-blue-400 transition mobile-menu-link">Fitur</a>
-        <a href="https://trakteer.id/uranusfazry" target="_blank" class="text-3xl hover:text-blue-400 transition mobile-menu-link">Dukungan</a>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#games">Game</a>
+        <a href="#features">Fitur</a>
+        <a href="https://trakteer.id/uranusfazry" target="_blank">Dukungan</a>
     </div>
 
-    <!-- Ad Slot 728x90 -->
-    <div class="container mx-auto px-4 my-8 flex justify-center">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">REVOLUSI GAMING GENERASI BARU</h1>
+                <p class="hero-subtitle">Platform gaming modern dengan teknologi terdepan, performa maksimal, dan koleksi game eksklusif untuk pengalaman bermain tanpa batas.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number counter" data-target="2500000">0</span>
+                        <span class="stat-label">Pemain Aktif</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number counter" data-target="22000">0</span>
+                        <span class="stat-label">Game Eksklusif</span>
+                    </div>
+                </div>
+
+                <a href="#games" class="cta-button">Jelajahi Game</a>
+            </div>
+            <div class="hero-image floating-element">
+                <img src="https://i.imghippo.com/files/Wrz1577wGE.png" alt="Gaming Setup">
+            </div>
+        </div>
+    </section>
+
+    <!-- Ad Slot -->
+    <div class="ad-container">
         <script type="text/javascript">
             atOptions = {
                 'key' : '4e385b58efa6579591e14c1570bcb0b9',
@@ -244,158 +796,104 @@
         <script type="text/javascript" src="//librarysituation.com/4e385b58efa6579591e14c1570bcb0b9/invoke.js"></script>
     </div>
 
-    <section class="relative overflow-hidden py-32 bg-cover bg-center">
-        <div id="particles-js"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-purple-900/80 to-blue-900/80 z-0"></div>
-        <div class="absolute inset-0 bg-noise opacity-10 z-0"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center">
-                <div class="lg:w-1/2 mb-10 lg:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-on-scroll fade-in-up" style="transition-delay: 100ms;">
-                        Revolusi Baru <span class="gradient-text">Uranus Play</span> Dalam Dunia Gaming
-                    </h1>
-                    <p class="text-xl text-gray-300 mb-8 max-w-lg animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
-                        Uranus Play adalah platform gaming modern yang menghadirkan teknologi inovatif, performa maksimal, dan koleksi game eksklusif untuk pengalaman bermain tanpa batas.
-                    </p>
-                    <div class="mt-12 flex items-center gap-8 mb-8 animate-on-scroll fade-in-up" style="transition-delay: 300ms;">
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-white"><span class="counter" data-target="2500000">0</span>+</div>
-                            <div class="text-gray-300">Pemain Aktif</div>
-                        </div>
-                        <div class="text-center">
-                            <div class="text-4xl font-bold text-white"><span class="counter" data-target="22000">0</span>+</div>
-                            <div class="text-gray-300">Game Eksklusif</div>
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap gap-4 animate-on-scroll fade-in-up" style="transition-delay: 400ms;">
-                        <a href="#games" id="explore-button" class="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:opacity-90 transition">Jelajahi Game</a>
-                    </div>
+    <!-- Games Section -->
+    <section id="games" class="games-section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">GAME UNGGULAN</h2>
+            <p class="section-subtitle">Koleksi game terpopuler yang dimainkan jutaan gamer di seluruh dunia</p>
+        </div>
+
+        <div class="games-grid">
+            <div class="game-card fade-in">
+                <img src="https://i.imghippo.com/files/OLD7050cbk.png" alt="Multiplayer Games" class="game-image">
+                <div class="game-content">
+                    <h3 class="game-title">Game Multiplayer Seru</h3>
+                    <p class="game-description">1000+ game seru langsung di browser tanpa download. Gratis, ringan, dan anti bosan untuk HP atau laptop!</p>
+                    <a href="https://poki.com/id/platform?campaign=21854231004&adgroup=164874311970&extensionid=&targetid=kwd-20170646&location=9056664&matchtype=b&network=g&device=m&devicemodel=&creative=719330220661&keyword=game%20platform&placement=&target=&gad_source=1&gad_campaignid=21854231004&gbraid=0AAAAADlg9ZGs2dgXjW8akb_umd2L8eAVL&gclid=Cj0KCQjwhafEBhCcARIsAEGZEKIub_wgDHeLY1zTU-0i2JseLTSVVtV0l61t6sZie--V99M3AfZ1OEwaAkX-EALw_wcB" target="_blank" class="play-button">Mainkan Sekarang</a>
                 </div>
-                <div class="lg:w-1/2 flex justify-center animate-on-scroll zoom-in" style="transition-delay: 500ms;">
-                    <img src="https://i.imghippo.com/files/Wrz1577wGE.png" alt="Gamer bermain di setup gaming canggih dengan lampu RGB di ruangan gelap" class="rounded-xl floating max-w-full">
+            </div>
+
+            <div class="game-card fade-in">
+                <img src="https://i.imghippo.com/files/lTDq7596IQE.png" alt="PlayStation Games" class="game-image">
+                <div class="game-content">
+                    <h3 class="game-title">Game Multiplayer PlayStation</h3>
+                    <p class="game-description">14.000+ game dari konsol legendaris: NES, SNES, Sega, N64, PS1, dan Arcade klasik. Main langsung di browser!</p>
+                    <a href="https://www.retrogames.cc/arcade-games/marvel-vs-capcom-clash-of-super-heroes-980112-euro.html" target="_blank" class="play-button">Mainkan Sekarang</a>
                 </div>
+            </div>
+
+            <div class="game-card fade-in">
+                <img src="https://i.imghippo.com/files/J4346lqw.png" alt="CrazyGames" class="game-image">
+                <div class="game-content">
+                    <h3 class="game-title">Game Multiplayer Menantang</h3>
+                    <p class="game-description">7000+ game gratis: aksi, balap, multiplayer, puzzle. Semua kategori bisa dimain langsung tanpa download!</p>
+                    <a href="https://www.crazygames.co.id/" target="_blank" class="play-button">Mainkan Sekarang</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-container">
+            <script async="async" data-cfasync="false" src="//librarysituation.com/40fd30f7e978e8d3d7f6b1f7ec895011/invoke.js"></script>
+            <div id="container-40fd30f7e978e8d3d7f6b1f7ec895011"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">MENGAPA URANUS PLAY</h2>
+            <p class="section-subtitle">Fitur premium untuk pengalaman gaming terbaik</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3 class="feature-title">Papan Peringkat Pro</h3>
+                <p class="feature-description">Bersaing dengan gamer terbaik dan lacak progres Anda dengan sistem ranking canggih yang real-time.</p>
+            </div>
+
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <h3 class="feature-title">Simpanan Awan</h3>
+                <p class="feature-description">Progres game Anda tersimpan otomatis dan bisa diakses dari perangkat manapun, kapanpun.</p>
+            </div>
+
+            <div class="feature-card fade-in">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="feature-title">Fitur Sosial</h3>
+                <p class="feature-description">Terhubung dengan teman, bergabung dengan klan, dan ikuti turnamen global bersama komunitas gamer.</p>
             </div>
         </div>
     </section>
 
-    <!-- Ad Slot 468x60 -->
-    <div class="container mx-auto px-4 my-8 flex justify-center">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '12b57a26809b241f9eb1d15af50de754',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//librarysituation.com/12b57a26809b241f9eb1d15af50de754/invoke.js"></script>
-    </div>
-
-    <section id="games" class="py-20 bg-gray-800">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 animate-on-scroll fade-in-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4"><span class="gradient-text">Game Unggulan</span> Kami</h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">Temukan game peringkat teratas kami yang disukai oleh jutaan pemain di seluruh dunia</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://i.imghippo.com/files/fyY2777MoM.png" alt="Uranus Play">
+                    <div>
+                        <div class="logo-text">URANUS PLAY</div>
+                        <p style="color: var(--text-secondary); margin-top: 0.5rem;">Platform gaming terbaik untuk gamer profesional</p>
+                    </div>
+                </div>
                 
-                <div class="game-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 animate-on-scroll zoom-in" style="transition-delay: 100ms;">
-                    <div class="h-48 overflow-hidden"><img src="https://i.imghippo.com/files/OLD7050cbk.png" alt="Game Poki Multiplayer Seru" class="w-full h-full object-cover"></div>
-                    <div class="p-6 relative z-10">
-                        <h3 class="text-xl font-bold">Game Multiplayer Seru</h3>
-                        <p class="text-gray-300 my-2 text-sm">Menyediakan lebih dari 1.000 game seru yang bisa langsung dimainkan di browser tanpa perlu download, login, atau install! Semua game di daftar ini gratis, ringan dimainkan di HP atau laptop, dan dijamin anti bosan!</p>
-                        <a href="https://poki.com/id/platform?campaign=21854231004&adgroup=164874311970&extensionid=&targetid=kwd-20170646&location=9056664&matchtype=b&network=g&device=m&devicemodel=&creative=719330220661&keyword=game%20platform&placement=&target=&gad_source=1&gad_campaignid=21854231004&gbraid=0AAAAADlg9ZGs2dgXjW8akb_umd2L8eAVL&gclid=Cj0KCQjwhafEBhCcARIsAEGZEKIub_wgDHeLY1zTU-0i2JseLTSVVtV0l61t6sZie--V99M3AfZ1OEwaAkX-EALw_wcB" target="_blank" class="text-sm bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Mainkan Sekarang</a>
-                    </div>
-                </div>
-
-                <div class="game-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 animate-on-scroll zoom-in" style="transition-delay: 200ms;">
-                    <div class="h-48 overflow-hidden"><img src="https://i.imghippo.com/files/lTDq7596IQE.png" alt="Game Multiplayer PlayStation" class="w-full h-full object-cover"></div>
-                    <div class="p-6 relative z-10">
-                        <h3 class="text-xl font-bold">Game Multiplayer PlayStation</h3>
-                        <p class="text-gray-300 my-2 text-sm">Menghadirkan lebih dari 14.000 game dari berbagai konsol legendaris seperti NES, SNES, Sega, Game Boy, N64, PlayStation 1, hingga Arcade klasik. Semua game bisa dimainkan langsung melalui browser tanpa perlu instalasi, lengkap dengan koleksi yang mencakup game fighting, balapan, petualangan, hingga RPG legendaris</p>
-                         <a href="https://www.retrogames.cc/arcade-games/marvel-vs-capcom-clash-of-super-heroes-980112-euro.html" target="_blank" class="text-sm bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Mainkan Sekarang</a>
-                    </div>
-                </div>
-
-                <div class="game-card bg-gray-800 rounded-xl overflow-hidden border border-gray-700 transition-all duration-300 animate-on-scroll zoom-in" style="transition-delay: 300ms;">
-                    <div class="h-48 overflow-hidden"><img src="https://i.imghippo.com/files/J4346lqw.png" alt="Mainkan Game Multiplayer Seru di CrazyGames" class="w-full h-full object-cover"></div>
-                    <div class="p-6 relative z-10">
-                        <h3 class="text-xl font-bold">Game Multiplayer Menantang</h3>
-                        <p class="text-gray-300 my-2 text-sm">Game online gratis yang menghadirkan lebih dari 7.000 game dari berbagai kategori. Mulai dari game aksi yang menegangkan, game balap memacu adrenalin, game multiplayer seru untuk mabar bersama teman, hingga game puzzle yang mengasah otak, semua bisa dimainkan langsung di browser tanpa perlu download</p>
-                        <a href="https://www.crazygames.co.id/" target="_blank" class="text-sm bg-purple-600 hover:bg-purple-700 px-3 py-1 rounded">Mainkan Sekarang</a>
-                    </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/share/1AfJHVfSY6/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@uranusfazry?_t=ZS-8y1ncR7XOi1&_r=1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/kingbewan?igsh=NHlyNnRzZ21wZjBi" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/@uranusfazry?si=pbliTKOKTkiCcxvu" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            
-            <!-- Native Banner Ad Slot -->
-            <div class="container mx-auto px-4 my-8 flex justify-center">
-                <script async="async" data-cfasync="false" src="//librarysituation.com/40fd30f7e978e8d3d7f6b1f7ec895011/invoke.js"></script>
-                <div id="container-40fd30f7e978e8d3d7f6b1f7ec895011"></div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Ad Slot 300x250 -->
-    <div class="container mx-auto px-4 my-8 flex justify-center">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '02868af768c06dc41af1cf4278b35515',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script type="text/javascript" src="//librarysituation.com/02868af768c06dc41af1cf4278b35515/invoke.js"></script>
-    </div>
-
-    <section id="features" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 animate-on-scroll fade-in-up">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mengapa Memilih <span class="gradient-text">Uranus Play</span></h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">Fitur premium yang dirancang untuk gamer serius</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 animate-on-scroll fade-in-up" style="transition-delay: 100ms;">
-                    <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-6 text-2xl"><i class="fas fa-trophy"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Papan Peringkat Pro</h3>
-                    <p class="text-gray-300">Bersaing dengan yang terbaik dan lacak kemajuan Anda dengan sistem peringkat canggih kami.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
-                    <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-6 text-2xl"><i class="fas fa-cloud"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Simpanan Awan</h3>
-                    <p class="text-gray-300">Kemajuan Anda disimpan secara otomatis dan dapat diakses dari perangkat apa pun.</p>
-                </div>
-                <div class="bg-gray-800 p-8 rounded-xl border border-gray-700 animate-on-scroll fade-in-up" style="transition-delay: 300ms;">
-                    <div class="w-14 h-14 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center mb-6 text-2xl"><i class="fas fa-users"></i></div>
-                    <h3 class="text-xl font-bold mb-3">Fitur Sosial</h3>
-                    <p class="text-gray-300">Terhubung dengan teman, bergabung dengan klan, dan berpartisipasi dalam acara global.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer id="community" class="bg-gray-900 border-t border-gray-800 pt-12 pb-6">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between animate-on-scroll fade-in-up">
-                <div class="mb-8 md:mb-0">
-                     <div class="flex items-center space-x-2 mb-4">
-                         <img src="https://i.imghippo.com/files/fyY2777MoM.png" alt="Logo Uranus Play" class="h-10 rounded-full">
-                         <span class="text-xl font-bold gradient-text">Uranus Play</span>
-                     </div>
-                    <p class="text-gray-400 max-w-xs">Platform gaming terbaik untuk gamer profesional.</p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                     </div>
-            </div>
-            
-            <!-- Ads in Footer -->
-            <div class="container mx-auto px-4 my-8 flex flex-wrap justify-center items-center gap-4">
-                 <!-- Ad Slot 160x600 -->
-                 <script type="text/javascript">
+            <div class="ad-container" style="flex-wrap: wrap; gap: 1rem;">
+                <script type="text/javascript">
                     atOptions = {
                         'key' : '183b3606595777dfa3c21aae80a6e25a',
                         'format' : 'iframe',
@@ -406,7 +904,6 @@
                 </script>
                 <script type="text/javascript" src="//librarysituation.com/183b3606595777dfa3c21aae80a6e25a/invoke.js"></script>
                 
-                <!-- Ad Slot 160x300 -->
                 <script type="text/javascript">
                     atOptions = {
                         'key' : '938448ef67f8a930f5c2f32bc44c52fb',
@@ -417,264 +914,271 @@
                     };
                 </script>
                 <script type="text/javascript" src="//librarysituation.com/938448ef67f8a930f5c2f32bc44c52fb/invoke.js"></script>
-
-                <!-- Ad Slot 320x50 -->
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '58a11b0bd3e96b9198fdc03a542828ac',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
-                    };
-                </script>
-                <script type="text/javascript" src="//librarysituation.com/58a11b0bd3e96b9198fdc03a542828ac/invoke.js"></script>
             </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center animate-on-scroll fade-in-up" style="transition-delay: 200ms;">
-                <p class="text-gray-500 mb-4 md:mb-0">© 2025 Uranus Play. Hak cipta dilindungi undang-undang.</p>
-                <div class="flex space-x-6">
-                    <a href="https://www.facebook.com/share/1AfJHVfSY6/" target="_blank" class="text-gray-400 hover:text-blue-400 transition text-xl"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.tiktok.com/@uranusfazry?_t=ZS-8y1ncR7XOi1&_r=1" target="_blank" class="text-gray-400 hover:text-white transition text-xl"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/kingbewan?igsh=NHlyNnRzZ21wZjBi" target="_blank" class="text-gray-400 hover:text-purple-400 transition text-xl"><i class="fab fa-instagram"></i></a>
-                    <a href="https://youtube.com/@uranusfazry?si=pbliTKOKTkiCcxvu" target="_blank" class="text-gray-400 hover:text-red-400 transition text-xl"><i class="fab fa-youtube"></i></a>
-                </div>
+
+            <div class="footer-bottom">
+                <p>© 2025 Uranus Play. Hak cipta dilindungi undang-undang.</p>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // [--- FUNGSI HAMBURGER MENU BARU ---]
-            const hamburgerButton = document.getElementById('hamburger-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-            const hamburgerIcon = hamburgerButton.querySelector('i');
+    <!-- Watermark -->
+    <div id="futuristic-watermark" title="Design by ©URANUSFAZRY">
+        <canvas id="particle-canvas"></canvas>
+        <div class="f-content-wrapper">
+            <div id="f-main-content" class="f-content">
+                <div class="f-logo-container">
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 20 L80 20 L80 80 L20 80 Z" stroke-opacity="0.5"/>
+                        <path d="M50 5 L95 50 L50 95 L5 50 Z"/>
+                    </svg>
+                </div>
+                <span id="f-watermark-text">©URANUSFAZRY</span>
+            </div>
+            <div id="f-follow-content" class="f-content hidden">
+                <span id="f-follow-message"></span>
+            </div>
+        </div>
+    </div>
 
-            const toggleMenu = () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenu.classList.toggle('flex'); 
-                // Mengubah ikon
-                if (mobileMenu.classList.contains('hidden')) {
-                    hamburgerIcon.classList.remove('fa-times');
-                    hamburgerIcon.classList.add('fa-bars');
+    <style>
+        /* Watermark Styles */
+        #futuristic-watermark {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            padding: 8px 15px;
+            min-width: 212px;
+            background: rgba(10, 25, 40, 0.85);
+            color: rgba(230, 255, 255, 0.95);
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.15);
+            z-index: 9999;
+            cursor: pointer;
+            user-select: none;
+            overflow: hidden;
+            opacity: 0;
+            animation: slideUpFadeIn 1s ease-out 0.5s forwards;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes slideUpFadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #futuristic-watermark:hover {
+            transform: translateY(-5px) scale(1.03);
+            border-color: rgba(168, 85, 247, 0.8);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+        }
+
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .f-content-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 18px;
+        }
+
+        .f-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .f-content.hidden {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            transform: scale(0.9);
+        }
+
+        .f-logo-container {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .f-logo-container svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--accent-purple);
+            stroke-width: 8;
+        }
+
+        #f-watermark-text, #f-follow-message {
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+    </style>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.counter');
+        const animateCounter = (counter) => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    counter.textContent = Math.floor(current).toLocaleString('id-ID');
+                    requestAnimationFrame(updateCounter);
                 } else {
-                    hamburgerIcon.classList.remove('fa-bars');
-                    hamburgerIcon.classList.add('fa-times');
+                    counter.textContent = target.toLocaleString('id-ID') + '+';
                 }
             };
+            updateCounter();
+        };
 
-            hamburgerButton.addEventListener('click', toggleMenu);
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', toggleMenu);
-            });
-            // [--- AKHIR FUNGSI HAMBURGER MENU ---]
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-
-            // Gulir halus untuk semua tautan jangkar
-            const anchorLinks = document.querySelectorAll('a[href^="#"]');
-            anchorLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Cek jika link bukan bagian dari menu seluler untuk mencegah penutupan ganda
-                    if (!this.classList.contains('mobile-menu-link')) {
-                        e.preventDefault();
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate counters when visible
+                    if (entry.target.classList.contains('counter') && entry.target.textContent === '0') {
+                        animateCounter(entry.target);
                     }
-                    const targetElement = document.querySelector(this.hash);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
-
-            // Animasi klik tombol "Jelajahi Game"
-            const exploreButton = document.getElementById('explore-button');
-            if (exploreButton) {
-                exploreButton.addEventListener('click', function() {
-                    this.classList.add('animate-pulse-click');
-                    this.addEventListener('animationend', () => {
-                        this.classList.remove('animate-pulse-click');
-                    }, { once: true });
-                });
-            }
-
-            // Inisialisasi particles.js
-            particlesJS('particles-js', {"particles":{"number":{"value":60,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle"},"opacity":{"value":0.5,"random":true,"anim":{"enable":true,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":2,"direction":"none","out_mode":"out"}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"repulse":{"distance":100,"duration":0.4},"push":{"particles_nb":4}}},"retina_detect":true});
-
-            // Animasi penghitung
-            const counters = document.querySelectorAll('.counter');
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText.replace(/\./g, '');
-                    const increment = target / 200; // speed
-                    if(count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(updateCount, 1);
-                    } else {
-                        counter.innerText = new Intl.NumberFormat('id-ID').format(target);
-                    }
+                    
+                    observer.unobserve(entry.target);
                 }
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            updateCount();
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.5 });
-                observer.observe(counter);
             });
+        }, observerOptions);
 
-            // Animasi saat scroll untuk elemen lain
-            const scrollElements = document.querySelectorAll('.animate-on-scroll');
-            const scrollObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            scrollElements.forEach(el => scrollObserver.observe(el));
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .counter').forEach(el => {
+            observer.observe(el);
         });
-    </script>
-    
-    <script>
-      (function() {
-        function initializeWatermark() {
-            const watermarkHTML = `
-              <div id="futuristic-watermark" title="Design by ©URANUSFAZRY">
-                <canvas id="particle-canvas"></canvas>
-                <div class="f-content-wrapper">
-                  <div id="f-main-content" class="f-content">
-                    <div class="f-logo-container">
-                      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20 20 L80 20 L80 80 L20 80 Z" stroke-opacity="0.5"/>
-                          <path d="M50 5 L95 50 L50 95 L5 50 Z"/>
-                      </svg>
-                    </div>
-                    <span id="f-watermark-text">©URANUSFAZRY</span>
-                  </div>
-                  <div id="f-follow-content" class="f-content hidden">
-                      <span id="f-follow-message"></span>
-                  </div>
-                </div>
-              </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', watermarkHTML);
-        
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Watermark functionality
+        (function() {
             const watermarkEl = document.getElementById('futuristic-watermark');
-            const textEl = document.getElementById('f-watermark-text');
-            const logoEl = watermarkEl.querySelector('.f-logo-container');
-            const mainContentEl = document.getElementById('f-main-content');
-            const followContentEl = document.getElementById('f-follow-content');
-            const followMessageEl = document.getElementById('f-follow-message');
-            
-            let isAnimating = false;
-            let autoPlayInterval = null;
-            let currentSequence = 0;
-            const sequenceActions = ['scramble', 'logo', 'youtube', 'tiktok', 'reset'];
-        
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
-            const resizeCanvas = () => { if (watermarkEl) { canvas.width = watermarkEl.offsetWidth; canvas.height = watermarkEl.offsetHeight; } };
+
+            const resizeCanvas = () => {
+                if (watermarkEl) {
+                    canvas.width = watermarkEl.offsetWidth;
+                    canvas.height = watermarkEl.offsetHeight;
+                }
+            };
+
             class Particle {
-                constructor() { this.reset(); this.baseSpeedX = (Math.random() - 0.5) * 0.5; this.baseSpeedY = (Math.random() - 0.5) * 0.5; this.speedX = this.baseSpeedX; this.speedY = this.baseSpeedY; }
+                constructor() {
+                    this.reset();
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                }
                 update() {
-                    this.x += this.speedX; this.y += this.speedY; this.opacity -= this.fadeSpeed;
-                    if (this.opacity <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) { this.reset(); }
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.opacity -= this.fadeSpeed;
+                    if (this.opacity <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                        this.reset();
+                    }
                 }
                 draw() {
-                    const style = getComputedStyle(watermarkEl);
-                    const hue = style.getPropertyValue('--particle-base-hue').trim();
-                    const lightness = parseFloat(style.getPropertyValue('--particle-base-lightness').trim());
                     ctx.globalAlpha = this.opacity;
-                    ctx.fillStyle = `hsl(${hue}, 100%, ${lightness + this.opacity * 40}%)`;
-                    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                    ctx.fillStyle = `hsl(270, 100%, ${60 + this.opacity * 40}%)`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
                 }
-                reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.opacity = Math.random() * 0.5 + 0.2; this.size = Math.random() * 1.5 + 0.5; this.fadeSpeed = Math.random() * 0.015 + 0.005; }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.fadeSpeed = Math.random() * 0.015 + 0.005;
+                }
             }
-            const animateParticles = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); ctx.globalAlpha = 1.0; requestAnimationFrame(animateParticles); };
-            
-            const textScramble = (el) => {
-                const originalText = "©URANUSFAZRY";
-                const chars = '!<>*#{}[]'; let frame = 0; isAnimating = true;
-                const interval = setInterval(() => {
-                    el.innerText = originalText.split('').map((char, i) => { const p = (frame - i * 2) / 15; if (p < 0) return ' '; if (p > 1) return char; return chars[Math.floor(Math.random() * chars.length)]; }).join('');
-                    if (frame >= originalText.length * 2 + 15) { clearInterval(interval); el.innerText = originalText; isAnimating = false; } frame++;
-                }, 30);
+
+            const animateParticles = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                ctx.globalAlpha = 1.0;
+                requestAnimationFrame(animateParticles);
             };
-        
-            const typewriter = (el, text) => {
-                let i = 0; el.innerHTML = ""; isAnimating = true;
-                const interval = setInterval(() => {
-                    if (i < text.length) { el.innerHTML += text.charAt(i); i++; } 
-                    else { clearInterval(interval); isAnimating = false; }
-                }, 50);
-            };
-        
-            const runAutoSequence = () => {
-                if (isAnimating) return;
-                const action = sequenceActions[currentSequence];
-                switch (action) {
-                    case 'scramble': textScramble(textEl); break;
-                    case 'logo':
-                        isAnimating = true;
-                        logoEl.classList.add('reacting');
-                        logoEl.addEventListener('animationend', () => { logoEl.classList.remove('reacting'); isAnimating = false; }, { once: true });
-                        break;
-                    case 'youtube':
-                        isAnimating = true;
-                        mainContentEl.classList.add('hidden');
-                        setTimeout(() => {
-                            followContentEl.classList.remove('hidden');
-                            typewriter(followMessageEl, "Follow uranusfazry YouTube");
-                        }, 400);
-                        break;
-                    case 'tiktok': 
-                        typewriter(followMessageEl, "Follow uranusfazry TikTok"); 
-                        break;
-                    case 'reset':
-                        isAnimating = true;
-                        followContentEl.classList.add('hidden');
-                        setTimeout(() => {
-                            mainContentEl.classList.remove('hidden');
-                            isAnimating = false;
-                        }, 400);
-                        break;
-                }
-                currentSequence = (currentSequence + 1) % sequenceActions.length;
-            };
-        
-            const startAutoPlay = () => {
-                if (autoPlayInterval) clearInterval(autoPlayInterval);
-                runAutoSequence();
-                autoPlayInterval = setInterval(runAutoSequence, 3500);
-            };
-        
-            watermarkEl.addEventListener('click', () => { watermarkEl.classList.toggle('light-mode'); });
-            
-            const init = () => {
-                resizeCanvas();
-                for (let i = 0; i < 40; i++) particles.push(new Particle());
-                animateParticles();
-                window.addEventListener('resize', resizeCanvas);
-                startAutoPlay();
-            };
-            init();
-        }
-    
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeWatermark);
-        } else {
-            initializeWatermark();
-        }
-      })();
+
+            resizeCanvas();
+            for (let i = 0; i < 30; i++) particles.push(new Particle());
+            animateParticles();
+            window.addEventListener('resize', resizeCanvas);
+        })();
     </script>
-    
-    <!-- Popunder and SocialBar Ad Scripts -->
+
+    <!-- Ad Scripts -->
     <script type='text/javascript' src='//librarysituation.com/de/bc/ac/debcacc7db35a0843f56ba5793d04c22.js'></script>
     <script type='text/javascript' src='//librarysituation.com/4e/2d/94/4e2d94e226305c31ee7f8576ae2c1afa.js'></script>
 </body>
